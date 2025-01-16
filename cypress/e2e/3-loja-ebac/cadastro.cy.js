@@ -21,11 +21,12 @@ it('Deve completar cadastro com sucesso', () => {
     cy.get('.woocommerce-message').should('exist')
 });
 
-it('Utilizando variavel', () => {
+it.only('Utilizando variavel', () => {
 
 var nome = faker.person.firstName()
 var email = faker.internet.email(nome)
 var sobrenome = faker.person.lastName()
+var display = faker.person.fullName(nome,sobrenome)
 
     cy.get('#reg_email').type(email)
     cy.get('#reg_password').type('teste@123')
@@ -35,6 +36,7 @@ var sobrenome = faker.person.lastName()
     cy.get('.woocommerce-MyAccount-navigation-link--edit-account > a').click()
     cy.get('#account_first_name').type(nome)
     cy.get('#account_last_name').type(sobrenome)
+    cy.get('#account_display_name').type(display)
     cy.get('.woocommerce-Button').click()
     cy.get('.woocommerce-message').should('exist')
 });
